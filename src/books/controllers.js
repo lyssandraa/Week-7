@@ -24,7 +24,21 @@ const addBook = async (request, response) => {
   response.send(successResponse);
 };
 
+const updateBook = async (request, response) => {
+  const updateBook = await Book.updateOne(
+    { title: request.body.title },
+    { $set: { author: request.body.author } }
+  );
+
+  const successResponse = {
+    message: "success",
+    updateBook: updateBook,
+  };
+  response.send(successResponse);
+};
+
 module.exports = {
   getAllBooks: getAllBooks,
   addBook: addBook,
+  updateBook: updateBook,
 };

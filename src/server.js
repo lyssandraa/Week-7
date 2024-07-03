@@ -16,21 +16,6 @@ connection();
 
 app.use(bookRouter);
 
-// PUT to update a book's auhtor by title //
-
-app.put("/books", async (request, response) => {
-  const updateBook = await Book.updateOne(
-    { title: request.body.title },
-    { $set: { author: request.body.author } }
-  );
-
-  const successResponse = {
-    message: "success",
-    updateBook: updateBook,
-  };
-  response.send(successResponse);
-});
-
 // DEL to delete a book by its title //
 
 app.delete("/books", async (request, response) => {
