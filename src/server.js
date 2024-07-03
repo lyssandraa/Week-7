@@ -58,9 +58,20 @@ app.post("/books/addBook", async (request, response) => {
   response.send(successResponse);
 });
 
-app.put("/books", (request, response) => {});
+app.put("/books", async (request, response) => {
+  const updatedBook = await Book.updateOne(
+    { title: request.body.title },
+    { author: request.body.author }
+  );
 
-app.delete("/books/deleteBook", (request, response) => {});
+  const successResponse = {
+    message: "success",
+    updatedBook: updatedBook,
+  };
+  response.send(successResponse);
+});
+
+app.delete("/books", (request, response) => {});
 
 app.listen(5001, () => {
   console.log("Server is listening on port 5001");
