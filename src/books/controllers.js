@@ -37,8 +37,19 @@ const updateBook = async (request, response) => {
   response.send(successResponse);
 };
 
+const deleteBook = async (request, response) => {
+  const deleteBook = await Book.deleteOne({ title: request.body.title });
+
+  const successResponse = {
+    message: "success",
+    deleteBook: deleteBook,
+  };
+  response.send(successResponse);
+};
+
 module.exports = {
   getAllBooks: getAllBooks,
   addBook: addBook,
   updateBook: updateBook,
+  deleteBook: deleteBook,
 };
