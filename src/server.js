@@ -16,23 +16,6 @@ connection();
 
 app.use(bookRouter);
 
-// POST to add a new book //
-
-app.post("/books/addBook", async (request, response) => {
-  const book = await Book.create({
-    title: request.body.title,
-    author: request.body.author,
-    genre: request.body.genre,
-  });
-
-  const successResponse = {
-    message: "success",
-    book: book,
-  };
-
-  response.send(successResponse);
-});
-
 // PUT to update a book's auhtor by title //
 
 app.put("/books", async (request, response) => {
