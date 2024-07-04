@@ -1,3 +1,4 @@
+const { request } = require("express");
 const Book = require("./model");
 
 const getAllBooks = async (request, response) => {
@@ -56,6 +57,21 @@ const dynamicUpdateBook = async (request, response) => {
   response.send(successResponse);
 };
 
+// findOneAndUpdate function //
+
+const findBookAndUpdate = async (request, response) => {
+  const findBookAndUpdate = await Book.findOneAndUpdate(
+    { title: request.body.title },
+    { author: request.body.author },
+    { new: true }
+  );
+  const successResponse = {
+    message: "success",
+    findBookAndUpdate: findBookAndUpdate,
+  };
+  response.send(successResponse);
+};
+
 const deleteBook = async (request, response) => {
   const deleteBook = await Book.deleteOne({ title: request.body.title });
 
@@ -71,5 +87,6 @@ module.exports = {
   addBook: addBook,
   updateBook: updateBook,
   dynamicUpdateBook: dynamicUpdateBook,
+  findBookAndUpdate: findBookAndUpdate,
   deleteBook: deleteBook,
 };

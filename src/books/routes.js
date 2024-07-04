@@ -7,6 +7,7 @@ const {
   updateBook,
   deleteBook,
   dynamicUpdateBook,
+  findBookAndUpdate,
 } = require("./controllers");
 
 // GET to get all books //
@@ -21,9 +22,13 @@ bookRouter.post("/books/addBook", addBook);
 
 bookRouter.put("/books", updateBook);
 
-// PUT to dynamically update a book //
+// PUT to dynamically update a book by title //
 
 bookRouter.put("/books/dynamicUpdateBook", dynamicUpdateBook);
+
+// PUT for findOneAndUpdate function to update book's author by title //
+
+bookRouter.put("/books/findBookAndUpdate", findBookAndUpdate);
 
 // DEL to delete a book by its title //
 
