@@ -24,6 +24,8 @@ const addBook = async (request, response) => {
   response.send(successResponse);
 };
 
+// update a book's authour by title //
+
 const updateBook = async (request, response) => {
   const updateBook = await Book.updateOne(
     { title: request.body.title },
@@ -33,6 +35,23 @@ const updateBook = async (request, response) => {
   const successResponse = {
     message: "success",
     updateBook: updateBook,
+  };
+  response.send(successResponse);
+};
+
+// dynamically update a book by title //
+
+const dynamicUpdateBook = async (request, response) => {
+  const filterObj = { title: request.body.title };
+  const updateObj = { [request.body.updateKey]: request.body.updateValue };
+
+  const dynamicUpdateBook = await Book.updateOne(filterObj, {
+    $set: updateObj,
+  });
+
+  const successResponse = {
+    message: "success",
+    dynamicUpdateBook: dynamicUpdateBook,
   };
   response.send(successResponse);
 };
@@ -51,5 +70,6 @@ module.exports = {
   getAllBooks: getAllBooks,
   addBook: addBook,
   updateBook: updateBook,
+  dynamicUpdateBook: dynamicUpdateBook,
   deleteBook: deleteBook,
 };
