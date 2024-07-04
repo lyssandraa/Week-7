@@ -9,6 +9,7 @@ const {
   findBookAndUpdate,
   deleteBook,
   deleteAllBooks,
+  findBook,
 } = require("./controllers");
 
 // GET to get all books //
@@ -38,5 +39,9 @@ bookRouter.delete("/books", deleteBook);
 // DEL to delete all books //
 
 bookRouter.delete("/books/deleteAllBooks", deleteAllBooks);
+
+// GET to find a single book by title //
+
+bookRouter.get("/books/findBook/:title", findBook);
 
 module.exports = bookRouter;

@@ -87,11 +87,23 @@ const deleteBook = async (request, response) => {
 // delete all books //
 
 const deleteAllBooks = async (request, response) => {
-  const deleteBook = await Book.deleteMany({});
+  const deleteAllBooks = await Book.deleteMany({});
 
   const successResponse = {
     message: "success",
     deleteAllBooks: deleteAllBooks,
+  };
+  response.send(successResponse);
+};
+
+// find a book by title //
+
+const findBook = async (request, response) => {
+  const findBook = await Book.findOne({ title: request.params.title });
+
+  const successResponse = {
+    message: "success",
+    findBook: findBook,
   };
   response.send(successResponse);
 };
@@ -104,4 +116,5 @@ module.exports = {
   findBookAndUpdate: findBookAndUpdate,
   deleteBook: deleteBook,
   deleteAllBooks: deleteAllBooks,
+  findBook: findBook,
 };
