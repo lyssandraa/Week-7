@@ -1,13 +1,13 @@
 const { Router } = require("express");
 const bookRouter = Router();
 
-const { getAllBooks } = require("./controllers");
-
-const { addBook } = require("./controllers");
-
-const { updateBook } = require("./controllers");
-
-const { deleteBook } = require("./controllers");
+const {
+  getAllBooks,
+  addBook,
+  updateBook,
+  deleteBook,
+  dynamicUpdateBook,
+} = require("./controllers");
 
 // GET to get all books //
 
@@ -20,6 +20,10 @@ bookRouter.post("/books/addBook", addBook);
 // PUT to update a book's author by title //
 
 bookRouter.put("/books", updateBook);
+
+// PUT to dynamically update a book //
+
+bookRouter.put("/books/dynamicUpdateBook", dynamicUpdateBook);
 
 // DEL to delete a book by its title //
 
