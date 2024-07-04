@@ -5,9 +5,10 @@ const {
   getAllBooks,
   addBook,
   updateBook,
-  deleteBook,
   dynamicUpdateBook,
   findBookAndUpdate,
+  deleteBook,
+  deleteAllBooks,
 } = require("./controllers");
 
 // GET to get all books //
@@ -30,8 +31,12 @@ bookRouter.put("/books/dynamicUpdateBook", dynamicUpdateBook);
 
 bookRouter.put("/books/findBookAndUpdate", findBookAndUpdate);
 
-// DEL to delete a book by its title //
+// DEL to delete one book by its title //
 
 bookRouter.delete("/books", deleteBook);
+
+// DEL to delete all books //
+
+bookRouter.delete("/books/deleteAllBooks", deleteAllBooks);
 
 module.exports = bookRouter;
